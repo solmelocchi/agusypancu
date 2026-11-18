@@ -195,7 +195,7 @@ const WEDDING_CONFIG = {
     perPersonNote: "La confirmación es individual: cada invitado completa la suya.",
     comments: false, // sin "Un mensaje para nosotros"
     whatsapp: { phoneNumber: "" },
-    sheets: { webAppUrl: "https://script.google.com/macros/s/AKfycby41Z-QSxgj8CVcpJp3Epg8yeDPGhf6Tt9yB-z5qrWKAbFVLhZFe_QFQU7P431i-K8oQg/exec" },
+    sheets: { webAppUrl: "https://script.google.com/macros/s/AKfycbwcyCqVMxWrvqGTbXin0Ua1X-VD8H4mtUI1Xrt-HUop5V9AjTsSyOCAzFDnSO3LAGYSRQ/exec" },
     menuOptions: ["Tradicional", "Sin TACC", "Para diabéticos"],
     menuNote: "Si necesitás menú sin TACC o para diabéticos, elegilo acá así lo preparan especialmente para vos."
   },
