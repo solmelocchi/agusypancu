@@ -26,8 +26,10 @@ const WEDDING_CONFIG = {
   // PAREJA
   // ------------------------------------------------------------
   couple: {
-    brideName: "María Agustina Acuña",
-    groomName: "Ignacio Abad",
+    brideName: "María Agustina",
+    brideSurname: "Acuña",
+    groomName: "Ignacio",
+    groomSurname: "Abad",
     connector: "e", // como lo escribieron: "María Agustina Acuña e Ignacio Abad"
     // Sello del sobre y pie: "I · A", como su logo
     brideInitial: "I",

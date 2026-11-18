@@ -1282,3 +1282,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* Nombres largos (con apellidos) en la portada */
 .hero-names.nombres-largos { font-size: clamp(2.3rem, 10.5vw, 4.6rem); line-height: 1.04; }
 .hero-names.nombres-largos .hero-name-2 { padding-left: .5em; }
+
+/* Nombres con apellidos: nombre grande, apellido chico debajo, "e" en el medio */
+.hero-names.con-apellidos { font-size: clamp(2.5rem, 10.5vw, 5.2rem); line-height: 1; }
+.hero-names.con-apellidos .hero-name-2 { padding-left: 0; }
+.hero-names.con-apellidos .hero-amp {
+  display: block;
+  margin: .32em 0 .22em;
+  font-size: .5em;
+  line-height: 1;
+}
+.hero-surname {
+  display: block;
+  margin-top: .55em;
+  font-family: var(--font-body);
+  font-size: clamp(.7rem, 2.6vw, .9rem);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.env-letter-names span { display: block; }
+.env-letter-names { padding: 0 14px; font-size: clamp(1rem, 4.6vw, 1.5rem); line-height: 1.2; text-wrap: balance; }
+.env-letter-names i { font-style: normal; color: var(--color-accent); font-size: .8em; }
+
+/* Aire entre las franjas de color y las ramitas */
+.band + .divider { padding-top: 64px; }
+.divider:has(+ .band) { padding-bottom: 64px; }

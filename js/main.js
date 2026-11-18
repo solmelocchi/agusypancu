@@ -158,7 +158,9 @@
 
     const [a, b] = initials();
     $("#env-seal-mono").innerHTML = `${a}<i>${sepHtml()}</i>${b}`;
-    $("#env-names").textContent = `${c.brideName} ${conector()} ${c.groomName}`;
+    // En la tarjetita del sobre: un nombre completo por renglón
+    const completo = (n, a) => (a ? `${n} ${a}` : n);
+    $("#env-names").innerHTML = `<span>${completo(c.brideName, c.brideSurname)}</span><span><i>${conector()}</i> ${completo(c.groomName, c.groomSurname)}</span>`;
     $("#env-date").textContent = c.weddingDateLabel || "";
     if (conf.eyebrow) $("#intro-eyebrow").textContent = conf.eyebrow;
     if (conf.hint) $("#intro-hint").textContent = conf.hint;
@@ -187,8 +189,11 @@
     const c = cfg.couple;
     $("#hero-image").src = c.heroImage;
     $("#hero-image").alt = `${c.brideName} y ${c.groomName}`;
-    $("#bride-name").textContent = c.brideName;
-    $("#groom-name").textContent = c.groomName;
+    // Con apellidos: el nombre grande y el apellido chico debajo, parejos
+    const conApellido = (n, a) => (a ? `${n}<small class="hero-surname">${a}</small>` : n);
+    $("#bride-name").innerHTML = conApellido(c.brideName, c.brideSurname);
+    $("#groom-name").innerHTML = conApellido(c.groomName, c.groomSurname);
+    if (c.brideSurname || c.groomSurname) $(".hero-names").classList.add("con-apellidos");
     // Nombres con apellidos: letra más chica para que entren en la portada
     if ((c.brideName + c.groomName).length > 22) $(".hero-names").classList.add("nombres-largos");
     const amp = $(".hero-amp");
