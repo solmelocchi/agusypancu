@@ -1310,3 +1310,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* Aire entre las franjas de color y las ramitas */
 .band + .divider { padding-top: 64px; }
 .divider:has(+ .band) { padding-bottom: 64px; }
+
+/* Portada en la compu: columna de texto centrada y con más presencia */
+@media (min-width: 900px) {
+  .hero { align-items: center; }
+  .hero-text { align-items: center; text-align: center; flex: 0 1 760px; }
+  .hero-text .eyebrow { justify-content: center; }
+  .hero-text .eyebrow::before { display: block; }
+  .hero-names { align-items: center; font-size: clamp(3.2rem, 4.9vw, 5.4rem); }
+  .hero-name-2 { padding-left: 0; }
+  .hero-phrase { margin: 26px auto 26px; font-size: 1.3rem; max-width: 34ch; }
+  .hd-day { font-size: 4.2rem; }
+  .hd-side { min-width: 120px; font-size: .74rem; }
+  .hero-year { margin-top: 14px; font-size: .78rem; }
+}
