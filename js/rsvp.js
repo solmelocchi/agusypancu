@@ -89,6 +89,26 @@
 
     $("#rsvp-name").addEventListener("input", (e) => e.target.classList.remove("field-error"));
 
+    // Una sola confirmación por persona (rsvp.oneTime): se recuerda en este
+    // celular y al volver se muestra directo el agradecimiento
+    const unaVez = cfg.rsvp.oneTime === true;
+    const clave = "rsvp-enviado:" + location.pathname + ":" + cfg.couple.weddingDate;
+    const mostrarGracias = (nombre, viene) => {
+      $("#rsvp-thanks-title").textContent = `¡Gracias, ${nombre}!`;
+      $("#rsvp-thanks-text").textContent = viene
+        ? "Recibimos tu confirmación. Nos hace muy felices que nos acompañes."
+        : "Recibimos tu respuesta. Te vamos a extrañar, gracias por avisarnos.";
+      form.hidden = true;
+      $("#rsvp-thanks").hidden = false;
+      if (unaVez) $("#rsvp-again").hidden = true;
+    };
+    if (unaVez) {
+      try {
+        const previa = JSON.parse(localStorage.getItem(clave) || "null");
+        if (previa) mostrarGracias(previa.nombre, previa.viene);
+      } catch (err) { /* sin almacenamiento: se muestra el formulario */ }
+    }
+
     // "Enviar otra confirmación" vuelve a mostrar el formulario vacío
     $("#rsvp-again").addEventListener("click", () => {
       $("#rsvp-thanks").hidden = true;
@@ -143,15 +163,13 @@
 
       // Tarjeta de agradecimiento en lugar del formulario
       const firstName = name.split(" ")[0];
-      $("#rsvp-thanks-title").textContent = `¡Gracias, ${firstName}!`;
-      $("#rsvp-thanks-text").textContent = going
-        ? "Recibimos tu confirmación. Nos hace muy felices que nos acompañes."
-        : "Recibimos tu respuesta. Te vamos a extrañar, gracias por avisarnos.";
+      if (unaVez) {
+        try { localStorage.setItem(clave, JSON.stringify({ nombre: firstName, viene: going })); } catch (err) { /* nada */ }
+      }
       setFeedback("", null);
       form.reset();
       form.classList.remove("is-declining");
-      form.hidden = true;
-      $("#rsvp-thanks").hidden = false;
+      mostrarGracias(firstName, going);
     });
   }
 

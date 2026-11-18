@@ -193,6 +193,7 @@ const WEDDING_CONFIG = {
     perPerson: true, // cada invitado confirma por su cuenta
     perPersonNote: "La confirmación es individual: cada invitado completa la suya.",
     comments: false, // sin "Un mensaje para nosotros"
+    oneTime: true,   // después de confirmar no se puede mandar otra desde ese celular
     whatsapp: { phoneNumber: "" },
     sheets: { webAppUrl: "https://script.google.com/macros/s/AKfycbwcyCqVMxWrvqGTbXin0Ua1X-VD8H4mtUI1Xrt-HUop5V9AjTsSyOCAzFDnSO3LAGYSRQ/exec" },
     menuOptions: ["Tradicional", "Sin TACC", "Para diabéticos"],
