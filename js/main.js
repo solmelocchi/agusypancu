@@ -17,6 +17,7 @@
   const fmtDate = (opts) => capitalize(weddingDate.toLocaleDateString("es-AR", opts));
   const fmtTime = () => weddingDate.toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit", hour12: false });
   const sep = () => (cfg.couple.monogramSeparator || "&");
+  const conector = () => (cfg.couple.connector || "&");
   const sepHtml = () => sep() === "&" ? "&amp;" : sep();
   const initials = () => [
     cfg.couple.brideInitial || cfg.couple.brideName.charAt(0),
@@ -157,7 +158,7 @@
 
     const [a, b] = initials();
     $("#env-seal-mono").innerHTML = `${a}<i>${sepHtml()}</i>${b}`;
-    $("#env-names").textContent = `${c.brideName} & ${c.groomName}`;
+    $("#env-names").textContent = `${c.brideName} ${conector()} ${c.groomName}`;
     $("#env-date").textContent = c.weddingDateLabel || "";
     if (conf.eyebrow) $("#intro-eyebrow").textContent = conf.eyebrow;
     if (conf.hint) $("#intro-hint").textContent = conf.hint;
@@ -188,6 +189,10 @@
     $("#hero-image").alt = `${c.brideName} y ${c.groomName}`;
     $("#bride-name").textContent = c.brideName;
     $("#groom-name").textContent = c.groomName;
+    // Nombres con apellidos: letra más chica para que entren en la portada
+    if ((c.brideName + c.groomName).length > 22) $(".hero-names").classList.add("nombres-largos");
+    const amp = $(".hero-amp");
+    if (amp) amp.textContent = conector();
     $("#hero-phrase").textContent = c.heroPhrase;
 
     // Fecha estilo tarjeta impresa: DOMINGO | 14 | MARZO, y abajo el año y la hora

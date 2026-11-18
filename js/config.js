@@ -15,7 +15,7 @@ const WEDDING_CONFIG = {
   // (ej. https://agusypancu.com.ar/assets/fotos/portada.jpg)
   // ------------------------------------------------------------
   meta: {
-    pageTitle: "María Agustina & Ignacio · 10 de abril de 2027",
+    pageTitle: "María Agustina Acuña e Ignacio Abad · 10 de abril de 2027",
     description: "Nos casamos y queremos compartir este día con vos. Toda la información de la ceremonia, la fiesta y cómo confirmar tu asistencia.",
     ogImage: "https://agusypancu.com.ar/assets/fotos/portada.jpg",
     url: "https://agusypancu.com.ar/",
@@ -26,8 +26,9 @@ const WEDDING_CONFIG = {
   // PAREJA
   // ------------------------------------------------------------
   couple: {
-    brideName: "María Agustina",
-    groomName: "Ignacio",
+    brideName: "María Agustina Acuña",
+    groomName: "Ignacio Abad",
+    connector: "e", // como lo escribieron: "María Agustina Acuña e Ignacio Abad"
     // Sello del sobre y pie: "I · A", como su logo
     brideInitial: "I",
     groomInitial: "A",
