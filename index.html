@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title id="page-title">María Agustina & Ignacio</title>
+<meta name="description" id="meta-description" content="">
+<meta name="theme-color" content="#F6F2EC">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" id="og-title" content="">
+<meta property="og:description" id="og-description" content="">
+<meta property="og:image" id="og-image" content="">
+<meta property="og:url" id="og-url" content="">
+
+<link rel="icon" id="favicon" href="assets/favicon.svg" type="image/svg+xml">
+
+<!-- Preconnect a fuentes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<!-- El sobre de apertura se muestra desde el primer cuadro para que no se
+     vea la página "por detrás". Si main.js no llegara a cargar, a los 4
+     segundos se quita solo y la invitación queda visible igual. -->
+<script>
+  document.documentElement.classList.add("intro-pending");
+  setTimeout(function () {
+    if (!window.__inviteReady) document.documentElement.classList.remove("intro-pending");
+  }, 4000);
+</script>
+</head>
+<body>
+
+<!-- ===================== SOBRE DE APERTURA ===================== -->
+<div id="intro" class="intro">
+  <p class="intro-eyebrow" id="intro-eyebrow">Tenés una invitación</p>
+  <div class="envelope" id="envelope">
+    <div class="env-back"></div>
+    <div class="env-letter">
+      <span class="env-letter-eyebrow">Nos casamos</span>
+      <span class="env-letter-names" id="env-names">María Agustina &amp; Ignacio</span>
+      <span class="env-letter-date" id="env-date"></span>
+    </div>
+    <div class="env-pocket"></div>
+    <div class="env-flap"></div>
+    <button class="env-seal" id="env-seal" type="button" aria-label="Abrir la invitación">
+      <span class="env-seal-mono" id="env-seal-mono">I<i>·</i>A</span>
+    </button>
+  </div>
+  <p class="intro-hint" id="intro-hint">Tocá el sello para abrir</p>
+</div>
+
+<!-- ===================== PÉTALOS (decorativo) ===================== -->
+<div id="petals" class="petals" aria-hidden="true"></div>
+
+<!-- ===================== BOTÓN DE MÚSICA ===================== -->
+<button id="music-toggle" class="music-toggle" aria-label="Activar música" aria-pressed="false">
+  <span class="music-icon">
+    <span></span><span></span><span></span><span></span>
+  </span>
+</button>
+<audio id="bg-music" loop preload="none"></audio>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="hero">
+  <div class="hero-visual fade-in" style="--d:.1s">
+    <span class="sprig flip hero-sprig hero-sprig-left" data-sprig></span>
+    <div class="hero-arch">
+      <img id="hero-image" class="hero-image" alt="" loading="eager">
+    </div>
+    <span class="sprig hero-sprig hero-sprig-right" data-sprig></span>
+  </div>
+
+  <div class="hero-text">
+    <p class="eyebrow fade-in" style="--d:.35s">Nos casamos</p>
+    <h1 class="hero-names">
+      <span class="hero-name fade-in" id="bride-name" style="--d:.5s">María Agustina</span>
+      <span class="hero-name hero-name-2 fade-in" style="--d:.7s"><span class="hero-amp" aria-hidden="true">&amp;</span> <span id="groom-name">Ignacio</span></span>
+    </h1>
+    <p class="hero-phrase fade-in" id="hero-phrase" style="--d:.9s"></p>
+    <div class="hero-date fade-in" style="--d:1.05s">
+      <span class="hd-side" id="hd-weekday"></span>
+      <span class="hd-day" id="hd-day"></span>
+      <span class="hd-side" id="hd-month"></span>
+    </div>
+    <p class="hero-year fade-in" id="hd-year" style="--d:1.15s"></p>
+  </div>
+
+  <a class="scroll-cue fade-in" href="#countdown" style="--d:1.4s" aria-label="Ver más">
+    <span class="scroll-line"></span>
+  </a>
+</header>
+
+<main>
+
+<!-- ===================== CUENTA REGRESIVA ===================== -->
+<section class="band countdown-band" id="countdown">
+  <span class="sprig band-sprig band-sprig-left" data-sprig></span>
+  <span class="sprig flip band-sprig band-sprig-right" data-sprig></span>
+  <div class="section countdown-section">
+    <p class="eyebrow reveal">Falta poco</p>
+    <div class="countdown reveal" role="timer" aria-label="Cuenta regresiva para la boda">
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-days">00</span>
+        <span class="countdown-label">Días</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-hours">00</span>
+        <span class="countdown-label">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-minutes">00</span>
+        <span class="countdown-label">Min</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-seconds">00</span>
+        <span class="countdown-label">Seg</span>
+      </div>
+    </div>
+    <p class="countdown-date reveal" id="countdown-date"></p>
+    <button class="btn btn-light reveal" id="add-to-calendar">Agendar la fecha</button>
+  </div>
+</section>
+
+<!-- ===================== NUESTRA HISTORIA ===================== -->
+<section class="section story-section" id="story">
+  <div class="story-grid">
+    <figure class="story-figure reveal">
+      <div class="story-image-wrap">
+        <img id="story-image" class="story-image" alt="" loading="lazy">
+      </div>
+    </figure>
+    <div class="story-text-wrap reveal">
+      <p class="eyebrow">Cómo empezó</p>
+      <h2 class="section-title" id="story-title">Nuestra historia</h2>
+      <p class="story-text" id="story-text"></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span class="sprig flip" data-sprig></span><span class="divider-gem"></span><span class="sprig" data-sprig></span></div>
+
+<!-- ===================== GALERÍA ===================== -->
+<section class="section section-wide gallery-section" id="gallery">
+  <p class="eyebrow reveal">Momentos</p>
+  <h2 class="section-title reveal">Galería</h2>
+  <div class="gallery-grid" id="gallery-grid"></div>
+</section>
+
+<div class="divider" aria-hidden="true"><span class="sprig flip" data-sprig></span><span class="divider-gem"></span><span class="sprig" data-sprig></span></div>
+
+<!-- ===================== CEREMONIA Y FIESTA ===================== -->
+<section class="section event-section" id="events">
+  <p class="eyebrow reveal">Dónde y cuándo</p>
+  <h2 class="section-title reveal">Ceremonia &amp; Fiesta</h2>
+
+  <div class="event-cards">
+    <article class="event-card reveal" id="ceremony-card">
+      <span class="event-icon" id="ceremony-icon" aria-hidden="true"></span>
+      <h3 class="event-name" id="ceremony-name"></h3>
+      <p class="event-time" id="ceremony-time"></p>
+      <p class="event-venue" id="ceremony-venue"></p>
+      <p class="event-address" id="ceremony-address"></p>
+      <div class="event-map">
+        <iframe id="ceremony-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen title="Mapa de la ceremonia"></iframe>
+      </div>
+      <a class="btn btn-outline" id="ceremony-directions" target="_blank" rel="noopener">Cómo llegar</a>
+    </article>
+
+    <article class="event-card reveal" id="party-card">
+      <span class="event-icon" id="party-icon" aria-hidden="true"></span>
+      <h3 class="event-name" id="party-name"></h3>
+      <p class="event-time" id="party-time"></p>
+      <p class="event-venue" id="party-venue"></p>
+      <p class="event-address" id="party-address"></p>
+      <div class="event-map">
+        <iframe id="party-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen title="Mapa de la fiesta"></iframe>
+      </div>
+      <a class="btn btn-outline" id="party-directions" target="_blank" rel="noopener">Cómo llegar</a>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== ITINERARIO ===================== -->
+<section class="section timeline-section" id="timeline">
+  <p class="eyebrow reveal">Paso a paso</p>
+  <h2 class="section-title reveal" id="timeline-title">El gran día</h2>
+  <ol class="timeline" id="timeline-list"></ol>
+</section>
+
+<div class="divider" aria-hidden="true"><span class="sprig flip" data-sprig></span><span class="divider-gem"></span><span class="sprig" data-sprig></span></div>
+
+<!-- ===================== DRESS CODE ===================== -->
+<section class="section dresscode-section" id="dresscode">
+  <div class="dresscode-card reveal">
+    <span class="sprig dresscode-sprig" data-sprig></span>
+    <p class="eyebrow">Código de vestimenta</p>
+    <h2 class="section-title" id="dresscode-title">Dress Code</h2>
+    <p class="dresscode-text" id="dresscode-text"></p>
+    <div class="dresscode-icons" id="dresscode-icons"></div>
+    <div class="dresscode-palette" id="dresscode-palette" hidden></div>
+  </div>
+</section>
+
+<!-- ===================== REGALOS ===================== -->
+<section class="band gifts-band" id="gifts">
+  <div class="section gifts-section">
+    <p class="eyebrow reveal">Si querés tener un gesto</p>
+    <h2 class="section-title reveal">Regalos</h2>
+    <p class="gifts-intro reveal" id="gifts-intro"></p>
+    <div class="gifts-grid" id="gifts-grid"></div>
+  </div>
+</section>
+
+<!-- ===================== PREGUNTAS FRECUENTES ===================== -->
+<section class="section faq-section" id="faq">
+  <p class="eyebrow reveal">Antes de venir</p>
+  <h2 class="section-title reveal" id="faq-title">Preguntas frecuentes</h2>
+  <div class="faq-list" id="faq-list"></div>
+</section>
+
+<div class="divider" aria-hidden="true"><span class="sprig flip" data-sprig></span><span class="divider-gem"></span><span class="sprig" data-sprig></span></div>
+
+<!-- ===================== CÁMARA DESCARTABLE ===================== -->
+<section class="section camara-section" id="camara">
+  <div class="camara-card reveal">
+    <span class="camara-icon line-icon" id="camara-icon" aria-hidden="true"></span>
+    <p class="eyebrow">Durante la fiesta</p>
+    <h2 class="section-title">Nuestra cámara descartable</h2>
+    <p class="camara-text" id="camara-text">Cada invitado tiene 24 fotos. Se revelan al día siguiente, como en las cámaras de antes.</p>
+    <a class="btn btn-primary" id="camara-link" target="_blank" rel="noopener">Abrir la cámara</a>
+  </div>
+</section>
+
+<!-- ===================== RSVP ===================== -->
+<section class="section rsvp-section" id="rsvp">
+  <p class="eyebrow reveal">Confirmá tu asistencia</p>
+  <h2 class="section-title reveal">¿Nos acompañás?</h2>
+  <p class="rsvp-subtitle reveal" id="rsvp-subtitle"></p>
+
+  <div class="rsvp-card reveal">
+    <form class="rsvp-form" id="rsvp-form" novalidate>
+      <div class="form-row">
+        <label for="rsvp-name">Nombre y apellido</label>
+        <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+      </div>
+
+      <fieldset class="form-row choice-row">
+        <legend>¿Venís?</legend>
+        <div class="choice-group">
+          <label class="choice">
+            <input type="radio" name="attending" value="Sí" required>
+            <span>Sí, ahí estaré</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="attending" value="No">
+            <span>No voy a poder</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="form-row" data-when-attending>
+        <label for="rsvp-guests">Cantidad de personas (contándote)</label>
+        <div class="stepper">
+          <button type="button" class="stepper-btn" data-step="-1" aria-label="Restar una persona">&minus;</button>
+          <input type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1" inputmode="numeric">
+          <button type="button" class="stepper-btn" data-step="1" aria-label="Sumar una persona">+</button>
+        </div>
+      </div>
+
+      <div class="form-row" data-when-attending>
+        <label for="rsvp-menu">Menú</label>
+        <select id="rsvp-menu" name="menu"></select>
+      </div>
+
+      <div class="form-row" data-when-attending>
+        <label for="rsvp-restrictions">Restricciones alimentarias</label>
+        <input type="text" id="rsvp-restrictions" name="restrictions" placeholder="Alergias, intolerancias, etc. (opcional)">
+      </div>
+
+      <div class="form-row">
+        <label for="rsvp-comments">Un mensaje para nosotros</label>
+        <textarea id="rsvp-comments" name="comments" rows="3" placeholder="Opcional"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="rsvp-submit">Enviar confirmación</button>
+      <p class="rsvp-feedback" id="rsvp-feedback" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="rsvp-thanks" id="rsvp-thanks" hidden>
+      <span class="rsvp-thanks-icon" aria-hidden="true"></span>
+      <h3 class="rsvp-thanks-title" id="rsvp-thanks-title">¡Gracias!</h3>
+      <p class="rsvp-thanks-text" id="rsvp-thanks-text"></p>
+      <button type="button" class="btn btn-ghost" id="rsvp-again">Enviar otra confirmación</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <span class="sprig footer-sprig" data-sprig></span>
+  <div class="footer-monogram" id="footer-monogram" aria-hidden="true">I <i>·</i> A</div>
+  <p class="footer-thanks">Te esperamos</p>
+  <p class="footer-date" id="footer-date"></p>
+  <div class="footer-actions">
+    <button class="btn btn-light" id="share-invite">Compartir invitación</button>
+  </div>
+  <div class="footer-social" id="footer-social"></div>
+  <p class="footer-contact" id="footer-contact"></p>
+  <p class="footer-agency" id="footer-agency"></p>
+</footer>
+
+<script src="js/config.js" defer></script>
+<script src="js/main.js" defer></script>
+<script src="js/rsvp.js" defer></script>
+</body>
+</html>
