@@ -603,7 +603,20 @@
     const toggle = $("#music-toggle");
     if (!cfg.music?.enabled) { toggle.remove(); return; }
     const audio = $("#bg-music");
-    audio.src = cfg.music.src;
+    // startAt: la canción arranca en ese segundo (#t= en la URL) y al
+    // terminar vuelve a ese mismo punto, no al principio
+    const start = Number(cfg.music.startAt) || 0;
+    audio.src = start ? `${cfg.music.src}#t=${start}` : cfg.music.src;
+    if (start) {
+      audio.loop = false;
+      audio.addEventListener("loadedmetadata", () => {
+        if (audio.currentTime < start) audio.currentTime = start;
+      }, { once: true });
+      audio.addEventListener("ended", () => {
+        audio.currentTime = start;
+        audio.play().catch(() => setPlaying(false));
+      });
+    }
     if (cfg.music.volume) audio.volume = cfg.music.volume;
 
     setPlaying = (on) => {

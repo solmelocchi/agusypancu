@@ -456,6 +456,7 @@ html.intro-pending .intro { display: flex; }
 .hero-phrase {
   margin: 20px auto 22px;
   max-width: 30ch;
+  text-wrap: balance;
   font-size: 1.05rem;
   font-style: italic;
   font-family: var(--font-display);

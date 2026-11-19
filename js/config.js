@@ -34,7 +34,7 @@ const WEDDING_CONFIG = {
     monogramSeparator: "·",
     weddingDate: "2027-04-10T15:30:00",
     weddingDateLabel: "10 de abril de 2027",
-    heroPhrase: "Dos caminos, un mismo destino.",
+    heroPhrase: "Un sí a lo que somos y a todo lo que viene.",
     heroImage: "assets/fotos/portada.jpg"
   },
 
@@ -70,15 +70,16 @@ const WEDDING_CONFIG = {
   },
 
   // ------------------------------------------------------------
-  // MÚSICA — arranca al abrir el sobre. Por ahora es la canción de
-  // ejemplo de la plantilla: reemplazar assets/musica.mp3 por la que elijan
+  // MÚSICA — arranca al abrir el sobre. "Run Together" de Mumford & Sons
+  // desde el segundo 45: el archivo ya está recortado de 0:45 a 2:28
+  // (sacado del video que mandaron), así que no hace falta startAt
   // ------------------------------------------------------------
   music: {
     enabled: true,
-    src: "assets/musica.mp3",
+    src: "assets/run-together.mp3",
     playOnOpen: true,
     volume: 0.7,
-    title: "Nuestra canción"
+    title: "Run Together · Mumford & Sons"
   },
 
   // ------------------------------------------------------------
@@ -178,7 +179,6 @@ const WEDDING_CONFIG = {
     items: [
       { q: "¿Pueden ir chicos?", a: "Esta vez la celebración es solo para adultos. ¡Gracias por entender!" },
       { q: "¿Hay estacionamiento?", a: "Sí, el salón tiene estacionamiento." },
-      { q: "¿Hay traslados?", a: "No vamos a tener traslados, así que te recomendamos organizar cómo vas a llegar y volver." },
       { q: "¿Hasta qué hora es la fiesta?", a: "La fiesta termina a las 3 de la mañana." }
     ]
   },
